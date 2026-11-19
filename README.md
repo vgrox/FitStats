@@ -2,6 +2,8 @@
 
 FitStats is a fitness analytics dashboard built with TypeScript, SQLite, and JavaScript. It turns workout records from the Strava API or a CSV export into training trends, period comparisons, and an activity log with filters and sorting.
 
+[Open the live workout dashboard](https://vgrox.github.io/FitStats/)
+
 ## Try the dashboard demo
 
 Build a static demo and serve it locally. You need Node.js 20+ and Python 3 to run the commands below. The demo build uses only Node.js built-ins.
