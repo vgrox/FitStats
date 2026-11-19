@@ -1,0 +1,25 @@
+# Dependencies and generated output
+node_modules/
+dist/
+coverage/
+
+# Local credentials (the template is intentionally tracked)
+.env
+.env.*
+!.env.example
+
+# Local SQLite data. Keep only the empty directory marker.
+data/*
+!data/.gitkeep
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+
+# Local runtime files
+*.log
+.DS_Store
+
+# Personal exports and temporary OAuth transfer files
+/outputs/
+/fitstats-oauth-transfer.txt

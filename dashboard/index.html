@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FitStats · Training dashboard</title>
+<link rel="icon" type="image/png" href="/fitstats-icon.png">
+<link rel="stylesheet" href="/style.css">
+<script type="module" src="/dashboard.js"></script>
+</head>
+<body>
+<header class="top"><div class="brand"><img class="mark" src="/fitstats-icon.png" alt="" width="33" height="33"> FitStats</div><span>Training dashboard</span></header>
+<main>
+  <section class="intro"><div><p class="eyebrow">TRAINING LOG</p><a class="back-link" id="dashboard-back" href="/" hidden>← Back to dashboard</a><h1 id="page-title">Your workouts</h1><p class="subtle" id="ranking-description" hidden></p><p id="coverage" role="status">Loading activities…</p><p class="subtle" id="sync-status">Last successful Strava sync: <time id="last-strava-sync">Checking…</time> <button type="button" id="sync-now" hidden>Sync now</button> <span id="sync-feedback" role="status"></span></p></div>
+  </section>
+  <section class="stats" aria-label="Activity totals" id="stats"></section>
+  <section class="panel comparison" id="period-comparison" aria-labelledby="comparison-title" hidden>
+    <div class="panel-head">
+      <h2 id="comparison-title">Period comparison</h2>
+      <label>Compare periods
+        <select id="comparison-length">
+          <option value="7">7 days</option>
+          <option value="28" selected>28 days</option>
+          <option value="90">90 days</option>
+        </select>
+      </label>
+    </div>
+    <p class="subtle" id="comparison-dates"></p>
+    <div class="comparison-grid" id="comparison-cards"></div>
+  </section>
+  <div class="panels" id="training-panels">
+    <section class="panel"><div class="panel-head"><div><p class="eyebrow">VOLUME OVER TIME</p><h2>Training trends</h2></div><label class="metric"><span>Metric</span><select id="metric"><option value="count">Workouts</option><option value="hours">Moving hours</option><option value="km">Distance (km)</option></select></label></div>
+      <p id="chart-label" class="subtle"></p><canvas id="trend" role="img" aria-describedby="chart-label"></canvas>
+      <details><summary>View trend values</summary><ul id="trend-values"></ul></details></section>
+    <section class="panel"><p class="eyebrow">WORKOUT BREAKDOWN</p><h2>Activity mix</h2><div class="mix-layout"><div class="donut" id="mix-ring" aria-hidden="true"><div><strong id="mix-total">—</strong><span>Workouts</span></div></div><ul class="mix" id="mix"></ul></div></section>
+    <section class="panel rhythm"><p class="eyebrow">TRAINING RHYTHM</p><h2>Workouts by weekday</h2><p class="subtle" id="weekday-note"></p><ul class="weekday-bars" id="weekday-bars"></ul></section>
+    <section class="panel duration"><p class="eyebrow">SESSION LENGTH</p><h2>How long you train</h2><p class="subtle" id="duration-note"></p><ul class="duration-bars" id="duration-bars"></ul></section>
+  </div>
+  <section class="milestones" id="milestones" aria-labelledby="milestone-title">
+    <h2 id="milestone-title">My milestones</h2>
+    <div class="milestone-grid" id="milestone-cards"></div>
+  </section>
+  <section class="panel explorer" aria-labelledby="filter-title">
+    <div class="panel-head"><div><p class="eyebrow">EXPLORE YOUR TRAINING</p><h2 id="filter-title">Filters &amp; sorting</h2></div><button type="reset" form="filters">Reset all</button></div>
+    <form id="filters">
+      <div class="filter-grid">
+        <label>Search workouts<input id="search" type="search" placeholder="Search by name"></label>
+        <label>Activity types <select id="type" multiple size="3" aria-describedby="type-help"></select><span id="type-help">None selected shows all types</span></label>
+        <label>Quick date range<select id="period"><option value="0">All time</option><option value="1">Latest month</option><option value="3">Latest 3 months</option><option value="6">Latest 6 months</option><option value="12">Latest 12 months</option></select></label>
+        <label>From date<input id="from" type="date"></label>
+        <label>Through date<input id="through" type="date"></label>
+        <label>Day of week<select id="weekday"></select></label>
+        <label>Sort by<select id="sort"></select></label>
+        <label>Direction<select id="direction"><option value="desc">Highest / latest first</option><option value="asc">Lowest / earliest first</option></select></label>
+      </div>
+      <details class="advanced"><summary>Advanced filters · pace, speed, heart rate, power and more</summary>
+        <p class="subtle">Ranges include both endpoints. Missing readings are excluded when a range is set.</p>
+        <div class="filter-grid" id="categories"></div>
+        <div class="filter-grid" id="ranges"></div>
+      </details>
+      <p id="filter-error" role="alert" hidden></p>
+      <p class="subtle">Dates and weekdays use the activity’s local date when available. Quick ranges count calendar months back from your latest activity.</p>
+    </form>
+  </section>
+  <section class="panel workouts"><div class="panel-head"><div><p class="eyebrow">WORKOUT HISTORY</p><h2 id="log-title" tabindex="-1">Activity log</h2><p class="subtle">Click a workout name to view its details.</p></div></div>
+  <div class="log-period" id="log-period" hidden><span id="log-period-label"></span><button type="button" id="clear-log-period">Clear period</button></div>
+  <div class="table-scroll"><table><thead><tr id="table-head"><th id="rank-column" scope="col" hidden>Rank</th><th>Activity date</th><th>Workout</th><th>Activity</th><th>Distance</th><th>Moving time</th><th>Avg. pace</th><th>Avg. speed</th><th>Avg. HR</th></tr></thead><tbody id="rows"></tbody></table></div>
+  <div class="paging"><span id="results" aria-live="polite"></span><div><button id="prev">Previous</button><button id="next">Next</button></div></div></section>
+</main>
+</body>
+</html>

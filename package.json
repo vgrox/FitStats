@@ -1,0 +1,51 @@
+{
+  "name": "fitstats",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Private local Strava-to-SQLite sync service for FitStats.",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "db:migrate": "tsx src/cli.ts db:migrate",
+    "strava:status": "tsx src/cli.ts strava:status",
+    "strava:import": "tsx src/cli.ts strava:import",
+    "strava:sync": "tsx src/cli.ts strava:sync",
+    "strava:streams:backfill": "tsx src/cli.ts strava:streams:backfill",
+    "strava:webhook:subscribe": "tsx src/cli.ts strava:webhook:subscribe",
+    "strava:webhook:status": "tsx src/cli.ts strava:webhook:status",
+    "strava:webhook:replace": "tsx src/cli.ts strava:webhook:replace",
+    "strava:webhook:retry": "tsx src/cli.ts strava:webhook:retry",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "tsx --test test/**/*.test.ts",
+    "strava:import-export": "tsx src/cli.ts strava:import-export",
+    "dashboard": "tsx src/dashboard.ts",
+    "start:hosted": "tsx src/server.ts --hosted",
+    "strava:import-archive": "tsx src/cli.ts strava:import-archive",
+    "strava:enrich": "tsx src/cli.ts strava:enrich",
+    "demo:build": "node scripts/build-synthetic.mjs",
+    "snapshot:build": "tsx scripts/build-snapshot.ts"
+  },
+  "dependencies": {
+    "adm-zip": "^0.6.1",
+    "better-sqlite3": "^12.6.2",
+    "csv-parse": "^7.0.3",
+    "dotenv": "^16.6.1",
+    "fast-xml-parser": "^5.12.1",
+    "fit-file-parser": "^6.2.10"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/adm-zip": "^0.5.8",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^22.19.7",
+    "eslint": "^9.39.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
